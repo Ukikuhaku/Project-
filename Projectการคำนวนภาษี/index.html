@@ -1,0 +1,95 @@
+<head>
+    <style>
+        /*CSS*/
+        h1{
+            background-color :salmon;
+            text-align: center;
+            font-family :Arial, Helvetica, sans-serif;
+        }
+        h3{
+            background-color :chartreuse
+        }
+        button{
+            background-color :lightgoldenrodyellow
+        }
+        #except{
+            background-color :white
+        }
+
+    </style>
+    
+</head>
+<body>
+    <h1>โปรแกรมคำนวนภาษีส่วนบุคคล</h1>
+    <p>กรุณากรอกรายได้รายปีของท่าน</p>
+    <input onblur="findIncome()" id="income1" type="text"name="income"/> 
+    <h3 id="except">กรุณากรอกค่าลดหย่อนภาษีในส่วนต่างๆ ช่องไหนที่ท่านไม่ได้รับการลดหย่อนสามาถรเว้นว่างไว้ได้</h3>
+    <h5>**ข้อควรระวัง เว็บนี้มีไว้เพื่อช่วยในจำแนกค่าลดหย่อนและการคำนวนเพียงเท่านั้น โปรดระวังการเปลี่ยนแปลงของการจ๋ายภาษีในแต่ละปีด้วย</h5>
+
+    <p>ค่าลดหย่อน-ส่วนตัว</p>
+    <input onblur="findTotal()" id="inputV" type="text" name="inputV"/> 
+    <p>ค่าลดหย่อน-พ่อ</p>
+    <input onblur="findTotal()" id="inputV1" type="text" name="inputV"/> 
+    <p>ค่าลดหย่อน-แม่</p>
+    <input onblur="findTotal()" id="inputV2" type="text" name="inputV"/>
+    <p>ค่าลดหย่อน-ลูกแท้ๆ</p>
+    <input onblur="findTotal()" id="inputV3" type="text" name="inputV"/>
+    <p>ค่าลดหย่อน-ลูกบุญธรรม</p>
+    <input onblur="findTotal()" id="inputV4" type="text" name="inputV"/>
+    <p>ค่าลดหย่อน-ผู้พิการอื่นๆ</p>
+    <input onblur="findTotal()" id="inputV5" type="text" name="inputV"/>
+    <p>ค่าลดหย่อน-ผู้ทุพพลภาพอื่นๆ</p>
+    <input onblur="findTotal()" id="inputV6" type="text" name="inputV"/>
+    <h3>ประกัน</h3>
+    <p>ประกันสังคม</p>
+    <input onblur="findTotal()" id="inputV7" type="text" name="inputV"/>
+    <p>ประกันชีวิตทั่วไป</p>
+    <input onblur="findTotal()" id="inputV8" type="text" name="inputV"/>
+    <p>ประกันชีวิตแบบบำนาญ</p>
+    <input onblur="findTotal()" id="inputV9" type="text" name="inputV"/>
+    <p>ประกันสุขภาพ-ตนเอง</p>
+    <input onblur="findTotal()" id="inputV10" type="text" name="inputV"/>
+    <p>ประกันสุขภาพ-พ่อ</p>
+    <input onblur="findTotal()" id="inputV11" type="text" name="inputV"/>
+    <p>ประกันสุขภาพ-แม่</p>
+    <input onblur="findTotal()" id="inputV12" type="text" name="inputV"/>
+    <h3>กองทุน</h3>
+    <p>ค่าซื้อ RMF</p>
+    <input onblur="findTotal()" id="inputV13" type="text" name="inputV"/>
+    <p>ค่าซื้อ SSF</p>
+    <input onblur="findTotal()" id="inputV14" type="text" name="inputV"/>
+    <p>กองทุนสำรองเลี้ยงชีพ</p>
+    <input onblur="findTotal()" id="inputV15" type="text" name="inputV"/>
+    <p>กองทุน กบข.</p>
+    <input onblur="findTotal()" id="inputV16" type="text" name="inputV"/>
+    <p>กองทุนสงเคราะห์ครูเอกชน</p>
+    <input onblur="findTotal()" id="inputV17" type="text" name="inputV"/>
+    <p>กองทุนการออมแห่งชาติ</p>
+    <input onblur="findTotal()" id="inputV18" type="text" name="inputV"/>
+    <h3>เงินบริจาค</h3>
+    <p>บริจาคพรรคการเมือง</p>
+    <input onblur="findTotal()" id="inputV19" type="text" name="inputV"/>
+    <p>บริจาคพิเศษ-การศึกษา,กีฬา,โรงพยาบาล</p>
+    <input onblur="findTotal()" id="inputV20" type="text" name="inputV"/>
+    <p>บริจาคทั่วไป</p>
+    <input onblur="findTotal()" id="inputV21" type="text" name="inputV"/>
+    <h3>อื่นๆ</h3>
+    <p>ดองเบี้ยบ้าน</p>
+    <input onblur="findTotal()" id="inputV22" type="text" name="inputV"/>
+    <p>ช้อปดีมีคืน</p>
+    <input onblur="findTotal()" id="inputV23" type="text" name="inputV"/>
+    <p>เงินลงทุนธุรกิจ Social Enterprise</p>
+    <input onblur="findTotal()" id="inputV24" type="text" name="inputV"/>
+    <br/><br/><br/>
+    ค่าลดหย่อยทั้งหมด : <input type="text" name="total" id="total"/>
+    <br/><br/><br/>
+
+    <button onclick="netIncome()">กดตรงนี้เพื่อยืนยันค่าลดหย่อนทั้งหมดของท่าน</button>
+    <br/>
+    <p>รายได้สุทธิของท่าน</p>
+    <input type="text" name="totalNet" id="totalNet"/>
+    <br/><br/>
+    
+    <button onclick="showTax(document.getElementById('totalNet').value)">กดตรงนี้เพื่อคำนวนภาษีที่ท่านต้องจ่าย</button>
+    <script src="app.js"></script>
+</body>
